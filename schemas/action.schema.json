@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.omnesight.com/schemas/v1/action.schema.json",
+  "title": "Omnesight Supervised Action Protocol Specification",
+  "type": "object",
+  "required": [
+    "action_id",
+    "protocol_version",
+    "action_type",
+    "target_system",
+    "target_entity_id",
+    "state",
+    "confidence_score",
+    "financial_impact_usd",
+    "sha256_audit_hash"
+  ],
+  "properties": {
+    "action_id": {
+      "type": "string",
+      "pattern": "^ACT-[A-Z0-9]{5,12}$"
+    },
+    "protocol_version": {
+      "type": "string",
+      "enum": ["1.0.0"]
+    },
+    "action_type": {
+      "type": "string",
+      "enum": [
+        "ERP_LEDGER_WRITE",
+        "PURCHASE_ORDER_CORRECTION",
+        "FREIGHT_DISPATCH_REROUTE",
+        "INVENTORY_ALLOCATION_REBALANCE",
+        "SUPPLIER_SLA_PENALTY_NOTICE"
+      ]
+    },
+    "target_system": {
+      "type": "string",
+      "enum": ["SAP_S4HANA", "ORACLE_NETSUITE", "MICROSOFT_DYNAMICS", "CUSTOM_SCADA"]
+    },
+    "target_entity_id": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "PROPOSED",
+        "VALIDATING",
+        "SUPERVISED_APPROVAL_MANDATED",
+        "APPROVED",
+        "COMMITTED",
+        "REVERTED"
+      ]
+    },
+    "confidence_score": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "financial_impact_usd": {
+      "type": "number",
+      "minimum": 0.0
+    },
+    "sha256_audit_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  }
+}
