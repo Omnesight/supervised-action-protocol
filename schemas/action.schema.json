@@ -30,12 +30,20 @@
         "PURCHASE_ORDER_CORRECTION",
         "FREIGHT_DISPATCH_REROUTE",
         "INVENTORY_ALLOCATION_REBALANCE",
-        "SUPPLIER_SLA_PENALTY_NOTICE"
+        "SUPPLIER_SLA_PENALTY_NOTICE",
+        "GRID_THERMAL_CONTAINMENT",
+        "PIPELINE_VALVE_ACTUATION"
       ]
     },
     "target_system": {
       "type": "string",
-      "enum": ["SAP_S4HANA", "ORACLE_NETSUITE", "MICROSOFT_DYNAMICS", "CUSTOM_SCADA"]
+      "enum": [
+        "SAP_S4HANA",
+        "ORACLE_NETSUITE",
+        "MICROSOFT_DYNAMICS",
+        "CUSTOM_SCADA",
+        "OMNESIGHT_SOVEREIGN_GRID"
+      ]
     },
     "target_entity_id": {
       "type": "string"
@@ -63,6 +71,26 @@
     "sha256_audit_hash": {
       "type": "string",
       "pattern": "^[a-f0-9]{64}$"
+    },
+    "formal_verification": {
+      "type": "object",
+      "required": ["sat_verified", "axioms_checked", "proof_sha256"],
+      "properties": {
+        "sat_verified": {
+          "type": "boolean"
+        },
+        "axioms_checked": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "proof_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "causal_ace_backdoor": {
+          "type": "number"
+        }
+      }
     }
   }
 }

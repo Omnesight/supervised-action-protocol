@@ -61,8 +61,27 @@ supervised-action-protocol/
 │   └── action.schema.json      # Formal JSON Schema draft 2020-12
 ├── spec/
 │   └── v1.0.md                 # Full RFC-style protocol specification
+├── sap_verifier.py             # Deterministic SAT axiom & guardrail reference verifier
+├── CONTRIBUTING.md             # Guide for sector-specific axioms & red-team vectors
 ├── LICENSE                     # Apache 2.0 License
 └── README.md
+```
+
+---
+
+## Quick Verification Example (`sap_verifier.py`)
+
+```python
+from sap_verifier import AxiomRule, verify_action_payload
+
+custom_rule = AxiomRule(
+    name="AXIOM_LINE_AMPACITY",
+    description="Conductor current must stay below rated ampacity.",
+    predicate=lambda p: float(p.get("current_amps", 0.0)) <= float(p.get("rated_amps", 800.0)),
+)
+
+report = verify_action_payload(action_payload, source_telemetry, extra_axioms=[custom_rule])
+print(report.state, report.sat_verified, report.proof_sha256)
 ```
 
 ---
