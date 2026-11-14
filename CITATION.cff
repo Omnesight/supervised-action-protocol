@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you implement or reference the Supervised Action Protocol (SAP) in your research or enterprise governance systems, please cite it using the metadata from this file."
+title: "Supervised Action Protocol (SAP) — Deterministic Governance & Formal Verification Specification"
+type: software
+authors:
+  - family-names: "Mavoungou"
+    given-names: "Malahim"
+    affiliation: "Omnesight"
+    email: "solutions@omnesight.com"
+  - name: "Omnesight Research & Infrastructure Team"
+version: "1.0.0"
+date-released: "2026-11-14"
+license: Apache-2.0
+repository-code: "https://github.com/Omnesight/supervised-action-protocol"
+url: "https://omnesight.com"
+abstract: "Open specification, JSON Schema, and reference deterministic verifier for the Supervised Action Protocol (SAP), enforcing formal constraint checks, causal guardrails, financial caps, and human-in-the-loop accountability prior to autonomous operational actuation."
+keywords:
+  - ai-safety
+  - formal-verification
+  - deterministic-guardrails
+  - supervised-action-protocol
+  - operational-governance
+  - enterprise-automation
+
